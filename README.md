@@ -2,6 +2,17 @@
 
 DoBotMagicianForEducation este o aplicație web care a fost creată cu scopul de a le oferi elevilor un mod interactiv de invățare. 
 
+## Design
+
+![Screenshot](var/www/html/img/SitePreviewLogare.png)
+![Screenshot](var/www/html/img/SitePreview.png)
+
+## Funcționalități
+- Opțiunea de logare pe pagina cun nume de utilizator și parolă
+- Introducerea de coordonate pentru mișcarea robotului
+- Afișarea în timp real
+- Trimiterea a mai multor seturi de coordonate pentru o miscare mai complexă
+  
 video.py
 Server de streaming video folosind camera de pe Raspberry Pi
 Pentru a capta frame-uri folosim biblioteca Picam2. Serverul transmite pe portul 8000 stream video in format mjpeg.
