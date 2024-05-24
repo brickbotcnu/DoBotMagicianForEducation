@@ -1,3 +1,6 @@
+# DoBotMagicianForEducation
+
+DoBotMagicianForEducation este o aplicație web care a fost creată cu scopul de a le oferi elevilor un mod interactiv de invățare. 
 
 video.py
 Server de streaming video folosind camera de pe Raspberry Pi
