@@ -1,17 +1,22 @@
 # DoBotMagicianForEducation
 
-DoBotMagicianForEducation este o aplicație web care a fost creată cu scopul de a le oferi elevilor un mod interactiv de invățare. 
+DOBOT Magician este un robot multifuncțional și versatil, conceput pentru a imbunătăți experiența educaționala în diverse domenii, în special în STEAM (Știință, Tehnologie, Inginerie, Artă și Mecanică), cu ajutorul paginii web ce oferă o experiență mult mai ușoară în a-l controla. DOBOT Magician permite elevilor să aplice teorie în practică prin experimente interactive și proiecte hands-on. Copiii pot explora funcționarea roboților, inclusiv aspecte precum controlul motoarelor, utilizarea senzorilor și execuția secvențelor de mișcare. Site-ul web este proiectat pentru a fi intuitiv și ușor de utilizat, facilitând interacțiunea elevilor cu brațul robotizat. În plus, pagină noastră oferă profesorilor șansă de a monitoriza progresul elevilor, evaluând performanțele.oriza progresul elevilor, evaluând performanțele.
 
 ## Design
 
 ![Screenshot](var/www/html/img/SitePreviewLogare.png)
+
 ![Screenshot](var/www/html/img/SitePreview.png)
 
 ## Funcționalități
 - Opțiunea de logare pe pagina cun nume de utilizator și parolă
 - Introducerea de coordonate pentru mișcarea robotului
-- Afișarea în timp real
-- Trimiterea a mai multor seturi de coordonate pentru o miscare mai complexă
+- Afișarea în timp real a mișcării brațului
+- Trimiterea a mai multor seturi de coordonate pentru o acțiune mai complexă mai complexă
+
+## Proiectare
+
+Proiectul nostru implică conectarea brațului robotic DOBOT Magician la un Raspberry Pi 4, care funcționează ca server și gestionează toate operațiunile. Raspberry-ul este plasat într-o carcasă 3D personalizată, proiectată și creată de noi pentru a s mula pe nevoile proiectului nostru și pentru a oferi un aspect placut
   
 video.py
 Server de streaming video folosind camera de pe Raspberry Pi
