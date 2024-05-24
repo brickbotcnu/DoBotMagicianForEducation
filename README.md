@@ -16,8 +16,8 @@ r - rotatia capului (float)
 s - ventuza sau gripperul (boolean)
 u - userul (str)
 argumentele sunt folosite pentru a transmite comanda de deplasare la coordoonatele x,y,z,r si pentru a transmite o cerere HTTP tip POST catre serverul de streaming cu mesajul ce va fi afisat, in format JSON
-print_messaje(mesaj) - transmite cereri HTTP POST
-dobot_move_to(x,y,z,r) -deplaseaza bratul la coordonatele respective
+print_messaje(mesaj) - transmite cereri HTTP POST folosind libraria requests iar mesajul este convertit in format JSON cu ajutorul librariei json
+dobot_move_to(x,y,z,r) -deplaseaza bratul la coordonatele respective este un program python ce foloseste o interfata multiplatforma pentru bratul robotic Dobot Magician
 
 procesare_inregistrari.php
 program scris in php care proceseaza cererile HTTP tip POST transmise de formularul de inregistrare.
