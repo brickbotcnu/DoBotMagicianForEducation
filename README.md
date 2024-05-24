@@ -16,7 +16,7 @@ DOBOT Magician este un robot multifuncțional și versatil, conceput pentru a im
 
 ## Proiectare
 
-Proiectul nostru implică conectarea brațului robotic DOBOT Magician la un Raspberry Pi 4, care funcționează ca server și gestionează toate operațiunile. Raspberry-ul este plasat într-o carcasă 3D personalizată, proiectată și creată de noi pentru a s mula pe nevoile proiectului nostru și pentru a oferi un aspect placut
+Proiectul nostru implică conectarea brațului robotic DOBOT Magician la un Raspberry Pi 4, care funcționează ca server și gestionează toate operațiunile. Raspberry-ul este plasat într-o Raspi [carcasa 3D](RaspiCase.step) personalizată, proiectată și creată de noi pentru a se mula pe nevoile proiectului nostru și pentru a oferi un aspect placut
   
 video.py
 Server de streaming video folosind camera de pe Raspberry Pi
