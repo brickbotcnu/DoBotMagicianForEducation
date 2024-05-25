@@ -14,19 +14,24 @@ DOBOT Magician este un robot multifuncțional și versatil, conceput pentru a im
 - Afișarea în timp real a mișcării brațului
 - Trimiterea a mai multor seturi de coordonate pentru o acțiune mai complexă mai complexă
 
-## Proiectare
+## Descriera Tehnică
 
-Proiectul nostru implică conectarea brațului robotic DOBOT Magician la un Raspberry Pi 4, care funcționează ca server și gestionează toate operațiunile. Raspberry-ul este plasat într-o [carcasa 3D](RaspiCase.step) personalizată, proiectată și creată de noi pentru a se mula pe nevoile proiectului nostru și pentru a oferi un aspect placut
-  
-video.py
-Server de streaming video folosind camera de pe Raspberry Pi
-Pentru a capta frame-uri folosim biblioteca Picam2. Serverul transmite pe portul 8000 stream video in format mjpeg.
-Serverul proceseaza si cereri HTTP tip POST iar informatia transmisa in format JSON este prelucrata si adaugata ca text incadrat intr-un dreptunghi peste matricea de pixeli din frame.
+Proiectul utilizează un Raspberry Pi 4 care funcționează pe post de server pentru DOBOT Magician, la care este conectat prin USB pentru a facilita o comunicare rapidă, acesta gestionează comunicarea între componentele sistemului și vizualizarea streamingului video de pe camera montată pe Raspberry în timp realreal. Raspberry-ul este plasat într-o [carcasă 3D](RaspiCase.step) personalizată, proiectată și creată de noi pentru a se mula pe nevoile proiectului nostru și pentru a oferi un aspect plăcut.
 
-video-server.service
-scriptul face ca  serverul de streaming sa ruleze in background ca service si sa porneasca automat la boot in urma activarii acestui serviciu (systemctl enable video-server)
+#### Streaming Video
 
-Dobot.py
+**video.py**
+
+Acest script gestionează streaming-ul video folosind biblioteca Picamera2. Camera Raspberry Pi captează cadre și le transmite în timp real pe portul 8000 în format MJPEG. Serverul de streaming video procesează și cereri HTTP POST, permițând adăugarea de text peste video. Acest text este afișat în timp real pe feed-ul video transmis către interfața web.
+
+**video-server.service**
+
+Pentru a asigura că serverul de streaming video rulează continuu, `video-server.service` este configurat să pornească automat la boot-ul Raspberry Pi și să ruleze în background. Acest serviciu se asigură că utilizatorii pot vizualiza fluxul video live oricând doresc (systemctl enable video-server).
+
+#### Controlul Brațului Robotic
+
+**Dobot.py**
+
 programul in python are ca argumente 
 x - coordonata x (int)
 y - coordonata y (int)
@@ -38,6 +43,11 @@ argumentele sunt folosite pentru a transmite comanda de deplasare la coordoonate
 print_messaje(mesaj) - transmite cereri HTTP POST folosind libraria requests iar mesajul este convertit in format JSON cu ajutorul librariei json
 dobot_move_to(x,y,z,r) -deplaseaza bratul la coordonatele respective este un program python ce foloseste o interfata multiplatforma pentru bratul robotic Dobot Magician
 
-procesare_inregistrari.php
-program scris in php care proceseaza cererile HTTP tip POST transmise de formularul de inregistrare.
-numele de user este verificat sa nu contina spatii sau caractere speciale, apoi este verificata unicitatea numelui in baza de date de tip mysql
+### Structura a Datelor
+
+Procesul de înregistrare este gestionat de un script PHP numit `procesare_inregistrari.php`. Acest script primește cererile HTTP POST transmise de către formularul de înregistrare și le procesează în consecință. În cadrul acestui script, numele de utilizator introdus este verificat pentru a se asigura că respectă cerințele (fără spații sau caractere speciale), iar parola este criptată folosind funcția `password_hash()` pentru a asigura securitatea datelor. Parola criptată este apoi stocată în baza de date MySQL împreună cu numele de utilizator.
+
+
+Pentru autentificare, când utilizatorii încearcă să se conecteze, numele de utilizator și parola lor sunt trimise din nou către server prin formularul de autentificare index.php. Scriptul PHP asociat verifică dacă numele de utilizator există în baza de date și apoi compară parola introdusă cu cea stocată înregistrată anterior, folosind funcția password_verify() pentru a verifica dacă parolele coincid. Dacă autentificarea este reușită, utilizatorul este redirecționat către pagina principală a aplicației, altfel, este afișat un mesaj de eroare.
+Aceste procese sunt esențiale pentru a asigura securitatea și funcționalitatea sistemului. Utilizarea criptării parolelor este o practică standard pentru a proteja datele utilizatorilor împotriva accesului neautorizat.
+
