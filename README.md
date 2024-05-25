@@ -43,15 +43,29 @@ argumentele sunt folosite pentru a transmite comanda de deplasare la coordoonate
 print_messaje(mesaj) - transmite cereri HTTP POST folosind libraria requests iar mesajul este convertit in format JSON cu ajutorul librariei json
 dobot_move_to(x,y,z,r) -deplaseaza bratul la coordonatele respective este un program python ce foloseste o interfata multiplatforma pentru bratul robotic Dobot Magician
 
-### Structura a Datelor
+### Structura Datelor
 
-Procesul de înregistrare este gestionat de un script PHP numit `procesare_inregistrari.php`. Acest script primește cererile HTTP POST transmise de către formularul de înregistrare și le procesează în consecință. În cadrul acestui script, numele de utilizator introdus este verificat pentru a se asigura că respectă cerințele (fără spații sau caractere speciale), iar parola este criptată folosind funcția `password_hash()` pentru a asigura securitatea datelor. Parola criptată este apoi stocată în baza de date MySQL împreună cu numele de utilizator.
+Fisierele sunt distribuite in urmatoarele directooare
+raspberry pi
+├── var
+│   └── www
+│       └──html
+│          └──index.php
+│          └──DobotControlPanel.php
+│          └──procesare_inregistrari.php  
+├── lib
+│   └── systemd
+│       └──system
+│          └──video-server.service  
+├── root
+    └── video.py
+Procesul de înregistrare este gestionat de un script PHP numit `procesare_inregistrari.php`. Acest script primește cererile HTTP POST transmise de către formularul de înregistrare și le procesează în consecință. În cadrul acestui script, numele de utilizator introdus este verificat pentru a se asigura că respectă cerințele (fără spații sau caractere speciale), iar parola este criptată folosind funcția `password_hash()` pentru a asigura securitatea datelor. Parola criptată este apoi stocată într-un tabel dintr-o baza de date MySQL împreună cu numele de utilizator. Indexarea tabelului se face cu ajutorul id-ului utilizatorului.
 
 
 Pentru autentificare, când utilizatorii încearcă să se conecteze, numele de utilizator și parola lor sunt trimise din nou către server prin formularul de autentificare `index.php`. Scriptul PHP asociat verifică dacă numele de utilizator există în baza de date și apoi compară parola introdusă cu cea stocată înregistrată anterior, folosind funcția password_verify() pentru a verifica dacă parolele coincid. Dacă autentificarea este reușită, utilizatorul este redirecționat către pagina principală a aplicației, altfel, este afișat un mesaj de eroare.
 Aceste procese sunt esențiale pentru a asigura securitatea și funcționalitatea sistemului. Utilizarea criptării parolelor este o practică standard pentru a proteja datele utilizatorilor împotriva accesului neautorizat.
 
-## Plan de dezvoltre
+## Plan de dezvoltare
 - Adăugarea si altor funcționalități precum posibilitatea de a face desene, grava lase și de printare 3D
 - Actualizare designul-ui paginii web pentru a fi mai ușor de utilizat
 - Sporirea securității si autentificare prin email
