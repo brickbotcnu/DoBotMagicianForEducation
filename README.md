@@ -48,17 +48,17 @@ dobot_move_to(x,y,z,r) -deplaseaza bratul la coordonatele respective este un pro
 Fisierele sunt distribuite in urmatoarele directooare<br>
 raspberry pi<br>
 ├── var<br>
-│   └── www<br>
-│       └──html<br>
-│          └──index.php<br>
-│          └──DobotControlPanel.php<br>
-│          └──procesare_inregistrari.php<br>
+│&nbsp;&nbsp;&nbsp;└── www<br>
+│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└──html<br>
+│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└──index.php<br>
+│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└──DobotControlPanel.php<br>
+│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└──procesare_inregistrari.php<br>
 ├── lib<br>
-│   └── systemd<br>
-│       └──system<br>
-│          └──video-server.service<br>  
+│&nbsp;&nbsp;&nbsp;└── systemd<br>
+│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└──system<br>
+│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└──video-server.service<br>
 ├── root<br>
-    └── video.py<br>
+&nbsp;&nbsp;&nbsp;└── video.py<br>
 Procesul de înregistrare este gestionat de un script PHP numit `procesare_inregistrari.php`. Acest script primește cererile HTTP POST transmise de către formularul de înregistrare și le procesează în consecință. În cadrul acestui script, numele de utilizator introdus este verificat pentru a se asigura că respectă cerințele (fără spații sau caractere speciale), iar parola este criptată folosind funcția `password_hash()` pentru a asigura securitatea datelor. Parola criptată este apoi stocată într-un tabel dintr-o baza de date MySQL împreună cu numele de utilizator. Indexarea tabelului se face cu ajutorul id-ului utilizatorului.
 
 
