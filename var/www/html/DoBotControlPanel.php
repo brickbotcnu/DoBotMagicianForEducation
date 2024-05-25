@@ -90,8 +90,8 @@ if(isset($_POST['trimite'])) {
                 background-color: #333333;
                 border-radius: 10px;
                 margin-right: 10px;
-		background-image: url('img/DoBotView.jpg'); /* Calea către imaginea ta */
-   		background-size: 282px 501px;/* Ajustează pentru a acoperi întregul container */
+		background-image: url('img/DoBotView.jpg');
+   		background-size: 282px 501px;
     		background-position: center;
         }
 
@@ -184,7 +184,6 @@ if(isset($_POST['trimite'])) {
   			user-select: none;
 		}
 
-		/* Hide the browser's default checkbox */
 		.checkbox input {
  			position: absolute;
   			opacity: 0;
@@ -193,7 +192,6 @@ if(isset($_POST['trimite'])) {
   			width: 0;	
 		}
 
-		/* Create a custom checkbox */
 		.checkmark {
   			position: absolute;
   			top: 0;
@@ -203,29 +201,24 @@ if(isset($_POST['trimite'])) {
   			background-color: #eee;
 		}
 
-		/* On mouse-over, add a grey background color */
 		.checkbox:hover input ~ .checkmark {
   			background-color: #ccc;
 		}
 
-		/* When the checkbox is checked, add a blue background */
 		.checkbox input:checked ~ .checkmark {
   			background-color: #66ccff;
 		}
 
-		/* Create the checkmark/indicator (hidden when not checked) */
 		.checkmark:after {
   			content: "";
   			position: absolute;
   			display: none;
 		}
 
-		/* Show the checkmark when checked */
 		.checkbox input:checked ~ .checkmark:after {
   		display: block;
 		}
 
-		/* Style the checkmark/indicator */
 		.checkbox .checkmark:after {
   			left: 9px;
   			top: 5px;
@@ -241,7 +234,7 @@ if(isset($_POST['trimite'])) {
     </style>
 </head>
 <body>
-    <h2><img src="img/SiglaCNU.png" style="height:40px;">&nbsp;Dobot Magician Control<h2>
+    <h2><img src="img/SiglaCNU.png" style="height:40px;">&nbsp;Dobot Magician Control</h2>
     <div class="container">
         <div class="video-container">
              <iframe src="http://192.168.0.203:8000" style="width:650px;height:500px;"></iframe>
