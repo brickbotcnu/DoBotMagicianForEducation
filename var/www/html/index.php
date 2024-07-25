@@ -1,33 +1,55 @@
-<?php
-$mysqli = new mysqli("localhost","pavel","DoBot2024!","putereabratului");
-
+<?php $mysqli = new mysqli("localhost","pavel","DoBot2024!","putereabratului");
 if($mysqli->connect_errno){
 echo " Eroare la conectarea in baza de date: (" . $mysqli->connect_errno . ") " . $mysqli->connect_error;
 }
 $mysqli->query("SET NAMES 'utf8'");
 session_start();
+$ip_address = $_SERVER['REMOTE_ADDR'];
+if (!$ip_address) {
+    die("Unable to get the user's IP address.");
+}
+
 if (isset($_POST["username"])){
 //print_r($_POST);
            $username = mysqli_real_escape_string($mysqli, $_POST["username"]);
            $password = mysqli_real_escape_string($mysqli, $_POST["password"]);
            $query = "SELECT * FROM Inregistrari WHERE username = '$username'";
-           $result = mysqli_query($mysqli, $query);
-           if(mysqli_num_rows($result) > 0)
+           $check_query = "SELECT * FROM Waiting WHERE ip_address = '$ip_address'";
+           $result_ip = $mysqli->query($check_query);
+                if (!$result_ip) {
+                 die("Error in check_query: " . $mysqli->error);
+                }
+           $result_password = mysqli_query($mysqli, $query);
+           if(mysqli_num_rows($result_password) > 0)
            {
-                while($row = mysqli_fetch_array($result))
+                while($row = mysqli_fetch_array($result_password))
                 {
                      if(password_verify($password, $row["password"]))
                      {
+                          if ($result_ip->num_rows == 0) {
+                            // Adaugă adresa IP în coadă
+                           $insert_query = "INSERT INTO Waiting (ip_address) VALUES ('$ip_address')";
+                                if($mysqli->query($insert_query) === TRUE){
+                                        echo "Added to waiting";
+                                 }
+                                else{
+                                        die("Error in insert_query:" . $mysqli0>error . " - Query: $insert_query");
+                                }
+                            }
+                                else{
+                                        echo "Already in waiting";
+                                }
+
                           //return true;
                           $_SESSION['uid']=$row['uid'];
                           $_SESSION['username'] = $username;
                           $_SESSION['fullname'] = $row['fullname'];
-                          header("location:DoBotControlPanel.php");
+                          header("location:queue.php");
                      }
                      else
                      {
                           //return false;
-                          echo '<script>alert("Combinatie user/parola gresita!1")</script>';
+                          echo '<script>alert("Combinatie user/parola gresita!")</script>';
                      }
                 }           }
            else
@@ -35,6 +57,7 @@ if (isset($_POST["username"])){
                 echo '<script>alert("User inexistent!")</script>';
            }
 }
+$mysqli->close();
 ?>
 <!DOCTYPE html>
 <html>
@@ -74,7 +97,7 @@ if (isset($_POST["username"])){
         }
 
         input[type="text"],
-        input[type="password"] {
+        input[type="password"]{
             width: 100%;
             padding: 8px;
             margin-bottom: 10px;
@@ -110,6 +133,7 @@ if (isset($_POST["username"])){
         }
         input[type="button"]:hover {
             background-color: #66ccff;
+           background-color: #66ccff;
         }
     </style>
 </head>
@@ -123,8 +147,9 @@ if (isset($_POST["username"])){
         <input type="password" id="password" name="password" required><br>
         <input type="submit" value="Logare">
     </form>
-    <input type="button" value="N-ai cont? | Înregistrează-te" onclick="location.href='inregistrari.html'">
+    <input type="button" value="N-ai cont? | Înregistrează-te" onclick="location.href='inregistrari.php'">
 </div>
 </body>
 </html>
+
 
