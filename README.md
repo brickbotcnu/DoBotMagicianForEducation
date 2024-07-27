@@ -53,7 +53,7 @@ raspberry pi<br>
 │&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└──index.php<br>
 │&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└──DobotControlPanel.php<br>
 │&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└──procesare_inregistrari.php<br>
-│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└──queue.php<br>
+│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└──queue.php<br>
 ├── lib<br>
 │&nbsp;&nbsp;&nbsp;└── systemd<br>
 │&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└──system<br>
@@ -66,7 +66,7 @@ Procesul de înregistrare este gestionat de un script PHP numit `procesare_inreg
 Pentru autentificare, când utilizatorii încearcă să se conecteze, numele de utilizator și parola lor sunt trimise din nou către server prin formularul de autentificare `index.php`. Scriptul PHP asociat verifică dacă numele de utilizator există în baza de date și apoi compară parola introdusă cu cea stocată înregistrată anterior, folosind funcția password_verify() pentru a verifica dacă parolele coincid. Dacă autentificarea este reușită, utilizatorul este redirecționat către pagina principală a aplicației, altfel, este afișat un mesaj de eroare.
 Aceste procese sunt esențiale pentru a asigura securitatea și funcționalitatea sistemului. Utilizarea criptării parolelor este o practică standard pentru a proteja datele utilizatorilor împotriva accesului neautorizat.
 
-Pentru a evita una din principalele probleme, și-anume doi utilizatori să emite unei directive operative către sistemul automatizat de manipulare robotică în același timp, am creat queue.php. În momentul în care utilizatorul se logheaza din `index.php`, folosind comanda `$_SERVER['REMOTE_ADDR']` preluăm ip-ul utilizatorului și îl adăugăm intr-o bază de date. Fiecare ip este numerotat de un id care are valori de la 1 pana la n crescător, iar in interfața de Waiting Room, folosind funcția `queue.php` facem query la baza de date, verificând care este prrimul id din șir. Acesta va avea acces primul la interfața principală, iar ceilalți utilizatori își vor astepta randul. Cand utlizatorul decide sa iasă din interfața principală, acesta va avea un buton de logout care acționeaza funcția `logout.php`, ip-ul acestuia va fi șters din baza de date,acesta fiind trimis în `index.php`, urmând rândul celuilalt utilizator.
+Pentru a evita una din principalele probleme, și-anume doi utilizatori să emite unei directive operative către sistemul automatizat de manipulare robotică în același timp, am creat queue.php. În momentul în care utilizatorul se logheaza din `index.php`, folosind comanda `$_SERVER['REMOTE_ADDR']` preluăm ip-ul utilizatorului și îl adăugăm intr-o bază de date. Fiecare ip este numerotat de un id care are valori de la 1 pana la n crescător, iar in interfața de Waiting Room, folosind funcția `queue.php` facem query la baza de date, verificând care este prrimul id din șir. Acesta va avea acces primul la interfața principală, iar ceilalți utilizatori își vor astepta randul. Cand utlizatorul decide sa iasă din interfața principală, acesta va avea un buton de logout care acționeaza funcția `logout.php`, ip-ul acestuia va fi șters din baza de date, acesta fiind trimis în `index.php`, urmând rândul celuilalt utilizator.
 
 ## Plan de dezvoltare
 - Adăugarea si altor funcționalități precum posibilitatea de a face desene, grava lase și de printare 3D
